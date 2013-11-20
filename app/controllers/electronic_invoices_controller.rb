@@ -16,7 +16,7 @@ class ElectronicInvoicesController < ApplicationController
     respond_to do |format|
       if @electronic_invoice.save
         format.html { redirect_to @electronic_invoice, notice: 'Successfully' }
-        format.json { render action: 'new', status: :created, location: @electronic_invoice }
+        format.json { render action: 'show', status: :created, location: @electronic_invoice }
       else
         format.html { render action: 'new' }
         format.json { render json: @electronic_invoice.errors, status: :unprocessable_entity }
@@ -28,13 +28,13 @@ class ElectronicInvoicesController < ApplicationController
   def electronic_invoice_params
     {
       user_keys: {
-        id:                   'UsuarioPruebasWS',
-        password:             'b9ec2afa3361a59af4b4d102d3f704eabdf097d4',
-        namespace:            'https://t2demo.facturacionmoderna.com/timbrado/soap',
-        endpoint:             'https://t2demo.facturacionmoderna.com/timbrado/soap',
-        wsdl:                 'https://t2demo.facturacionmoderna.com/timbrado/wsdl',
-        log:                  false,
-        ssl_verify_mode:      :none
+        id:                   Rails.application.config.fm_id,
+        password:             Rails.application.config.fm_password,
+        namespace:            Rails.application.config.fm_namespace,
+        endpoint:             Rails.application.config.fm_endpoint,
+        wsdl:                 Rails.application.config.fm_wsdl,
+        log:                  Rails.application.config.fm_log,
+        ssl_verify_mode:      Rails.application.config.fm_ssl_verify_mode
       },
       pac_provider:           'FacturacionModerna',
       biller: {

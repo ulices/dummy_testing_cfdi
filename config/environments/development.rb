@@ -27,4 +27,12 @@ DummyTestingCfdi::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # FacturacionModerna user keys
+  config.fm_id =                   'UsuarioPruebasWS'
+  config.fm_password =             'b9ec2afa3361a59af4b4d102d3f704eabdf097d4'
+  config.fm_namespace =            'https://t2demo.facturacionmoderna.com/timbrado/soap'
+  config.fm_endpoint =             'https://t2demo.facturacionmoderna.com/timbrado/soap'
+  config.fm_wsdl =                 'https://t2demo.facturacionmoderna.com/timbrado/wsdl'
+  config.fm_log =                  false
+  config.fm_ssl_verify_mode =      :none
 end
