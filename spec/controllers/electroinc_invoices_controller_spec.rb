@@ -11,6 +11,16 @@ describe ElectronicInvoicesController do
     end
   end
 
+  describe '#show' do
+    before do 
+      get :show
+    end
+
+    specify do
+      expect(response).to be_success
+    end
+  end
+
   describe '#new' do
     before do
       get :new

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  request: MyString
+  xml_response: MyString
+  txt_stamp: MyString
+  cbb: MyString
+
+two:
+  request: MyString
+  xml_response: MyString
+  txt_stamp: MyString
+  cbb: MyString
