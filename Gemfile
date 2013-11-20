@@ -9,6 +9,11 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
+#gem 'facturacion_electronica', git: 'git@github.com:crowdint/facturacion_electronica.git'
+gem 'facturacion_electronica', path: '../facturacion_electronica'
+gem 'fm_timbrado_cfdi', git: 'git@github.com:crowdint/fm_timbrado_cfdi.git'
+gem 'nokogiri', '< 1.6', '>= 1.4.0'
+
 group :developmen, :test do
   gem 'rspec-rails', '~> 2.0'
 end

@@ -1,4 +1,5 @@
 class ElectronicInvoicesController < ApplicationController
+  before_action :set_electronic_invoice, only: :show
   def index
     @electronic_invoices = ElectronicInvoice.all
   end
@@ -12,6 +13,7 @@ class ElectronicInvoicesController < ApplicationController
 
   def create
     @electronic_invoice = ElectronicInvoice.new(request: electronic_invoice_params.to_s)
+    @electronic_invoice.xml_response = request_to_stamp
 
     respond_to do |format|
       if @electronic_invoice.save
@@ -23,6 +25,7 @@ class ElectronicInvoicesController < ApplicationController
       end
     end
   end
+
   private
 
   def electronic_invoice_params
@@ -117,4 +120,14 @@ class ElectronicInvoicesController < ApplicationController
       }
     }
   end
+
+  def set_electronic_invoice
+    @electronic_invoice = ElectronicInvoice.find params[:id]
+  end
+
+  def request_to_stamp
+    cfdi_response = FacturacionElectronica.create_cfdi electronic_invoice_params
+    cfdi_response[:xml]
+  end
+
 end

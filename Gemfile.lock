@@ -1,3 +1,18 @@
+GIT
+  remote: git@github.com:crowdint/fm_timbrado_cfdi.git
+  revision: f6a58a55fc9dc6b592c5c70973c041b8628514fd
+  specs:
+    fm_timbrado_cfdi (0.0.1.alpha)
+      nokogiri
+      savon (= 1.2.0)
+
+PATH
+  remote: ../facturacion_electronica
+  specs:
+    facturacion_electronica (0.0.1)
+      cfdi
+      fm_timbrado_cfdi
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -25,9 +40,14 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    akami (1.2.0)
+      gyoku (>= 0.4.0)
+      nokogiri (>= 1.4.0)
     arel (4.0.1)
     atomic (1.1.14)
     builder (3.1.4)
+    cfdi (0.1.3)
+      nokogiri
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -38,7 +58,11 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
+    gyoku (0.4.6)
+      builder (>= 2.1.2)
     hike (1.2.3)
+    httpi (1.1.1)
+      rack
     i18n (0.6.5)
     jbuilder (1.5.2)
       activesupport (>= 3.0.0)
@@ -53,6 +77,8 @@ GEM
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.2)
+    nokogiri (1.5.10)
+    nori (1.1.5)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -89,6 +115,14 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    savon (1.2.0)
+      akami (~> 1.2.0)
+      builder (>= 2.1.2)
+      gyoku (~> 0.4.5)
+      httpi (~> 1.1.0)
+      nokogiri (>= 1.4.0)
+      nori (~> 1.1.0)
+      wasabi (~> 2.5.0)
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
@@ -115,14 +149,20 @@ GEM
     uglifier (2.3.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    wasabi (2.5.1)
+      httpi (~> 1.0)
+      nokogiri (>= 1.4.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
+  facturacion_electronica!
+  fm_timbrado_cfdi!
   jbuilder (~> 1.2)
   jquery-rails
+  nokogiri (>= 1.4.0, < 1.6)
   rails (= 4.0.0)
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)
