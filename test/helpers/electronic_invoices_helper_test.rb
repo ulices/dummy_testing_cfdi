@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class ElectronicInvoicingsHelperTest < ActionView::TestCase
+class ElectronicInvoicesHelperTest < ActionView::TestCase
 end

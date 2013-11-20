@@ -2,6 +2,8 @@ DummyTestingCfdi::Application.routes.draw do
 
   resources :electronic_invoices
 
+  root 'electroinc_infoices#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

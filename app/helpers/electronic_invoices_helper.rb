@@ -1,2 +1,2 @@
-module ElectronicInvoicingsHelper
+module ElectronicInvoicesHelper
 end
