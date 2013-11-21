@@ -1,5 +1,6 @@
 class ElectronicInvoicesController < ApplicationController
   before_action :set_electronic_invoice, only: :show
+
   def index
     @electronic_invoices = ElectronicInvoice.all
   end
@@ -47,15 +48,15 @@ class ElectronicInvoicesController < ApplicationController
       },
       bill: {
         factura: {
-          folio:              '101',
-          serie:              'AA',
-          fecha:              Time.now,
-          formaDePago:        'Pago en una sola exhibicion',
-          condicionesDePago:  'Contado',
-          metodoDePago:       'Cheque',
-          lugarExpedicion:    'San Pedro Garza Garcia, Nuevo Leon, Mexico',
-          NumCtaPago:         'No identificado',
-          moneda:             'MXN'
+          folio:              params[:folio],
+          serie:              params[:serie],
+          fecha:              params[:fecha],
+          formaDePago:        params[:forma_pago],
+          condicionesDePago:  params[:condiciones_pago],
+          metodoDePago:       params[:metodo_pago],
+          lugarExpedicion:    params[:lugar_expedicion],
+          NumCtaPago:         params[:numero_cuenta_pago],
+          moneda:             params[:moneda]
         },
         conceptos: [
           { cantidad:         3,

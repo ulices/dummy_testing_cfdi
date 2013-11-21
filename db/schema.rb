@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120193243) do
+ActiveRecord::Schema.define(version: 20131121174057) do
 
   create_table "electronic_invoices", force: true do |t|
     t.string   "request"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 20131120193243) do
     t.string   "cbb"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "folio"
+    t.string   "serie"
+    t.datetime "fecha"
+    t.string   "forma_pago"
+    t.string   "condiciones_pago"
+    t.string   "metodo_pago"
+    t.string   "expedido"
+    t.string   "numero_cuenta_pago"
+    t.string   "moneda"
   end
 
 end

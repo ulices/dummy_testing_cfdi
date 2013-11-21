@@ -1,8 +1,41 @@
 <%= form_for(@electronic_invoice) do |f| %>
   <div class='field'>
-    <%= f.label :request %>
-    <%= f.text_field :request %>
+    <%= f.label :folio %>
+    <%= f.text_field :folio, value: ['101', '102', '103', '104'].sample %>
   </div>
+  <div class='field'>
+    <%= f.label :serie %>
+    <%= f.text_field :serie, value: ['AA', 'BB', 'CC', 'DD'].sample %>
+  </div>
+  <div class='field'>
+    <%= f.label :fecha %>
+    <%= f.date_field :fecha %>
+  </div>
+  <div class='field'>
+    <%= f.label :forma_pago %>
+    <%= f.text_field :forma_pago, value: 'Pago en una sola exhibicion' %>
+  </div>
+  <div class='field'>
+    <%= f.label :condiciones_pago %>
+    <%= f.text_field :condiciones_pago, value: 'Contado' %>
+  </div>
+  <div class='field'>
+    <%= f.label :metodo_pago %>
+    <%= f.text_field :metodo_pago, value: ['Cheque', 'Efectivo'].sample %>
+  </div>
+  <div class='field'>
+    <%= f.label :expedido %>
+    <%= f.text_field :expedido, value: 'San Pedro Garza Garcia, Nuevo Leon, Mexico' %>
+  </div>
+  <div class='field'>
+    <%= f.label :numero_cuenta_pago %>
+    <%= f.text_field :numero_cuenta_pago %>
+  </div>
+  <div class='field'>
+    <%= f.label :moneda %>
+    <%= f.text_field :moneda, value: 'MXN' %>
+  </div>
+
   <div class='actions'>
     <%= f.submit %>
   </div>
