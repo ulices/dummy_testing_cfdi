@@ -9,6 +9,8 @@ class ElectronicInvoicesController < ApplicationController
   end
 
   def new
+    @user = User.where(rfc: 'TUMG620310R95')
+    @user_credentials = UserCredentialService.new @user
     @electronic_invoice = ElectronicInvoice.new
   end
 
@@ -42,8 +44,8 @@ class ElectronicInvoicesController < ApplicationController
       },
       pac_provider:           'FacturacionModerna',
       biller: {
-         certificate:         File.open('./spec/fixtures/example_certificates/TUMG620310R95/TUMG620310R95_1210241209S.cer'),
-         key:                 File.open('spec/fixtures/example_certificates/TUMG620310R95/TUMG620310R95_1210241209S.key.pem'),
+         certificate:         @user_credentials.get_certificate,
+         key:                 @user_credentials.get_key,
          password:            '12345678a'
       },
       bill: {
@@ -73,8 +75,8 @@ class ElectronicInvoicesController < ApplicationController
           },
         ],
         emisor: {
-          rfc:                'TUMG620310R95',
-          nombre:             'FACTURACION MODERNA SA DE CV',
+          rfc:                @user.rfc,
+          nombre:             @user.name,
           domicilioFiscal: {
             calle:            'RIO GUADALQUIVIR',
             noExterior:       '238',
@@ -92,7 +94,7 @@ class ElectronicInvoicesController < ApplicationController
             noExterior:       '238',
             noInterior:       '314',
             colonia:          'ORIENTE DEL VALLE',
-            localidad:        'No se que sea esto, pero va',
+            localidad:        'Monterrey',
             referencia:       'Sin Referencia',
             municipio:        'San Pedro Garza Garcia',
             estado:           'Nuevo Leon',
@@ -101,7 +103,7 @@ class ElectronicInvoicesController < ApplicationController
           },
           regimenFiscal:      'REGIMEN GENERAL DE LEY PERSONAS MORALES'
         },
-        emisor_pass:          'billerpass',
+        emisor_pass:          @user.pass_sat,
         cliente: {
           rfc:                'XAXX010101000',
           nombre:             'PUBLICO EN GENERAL',

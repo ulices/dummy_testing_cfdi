@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  rfc: MyString
+  pass_sat: MyString
+
+two:
+  name: MyString
+  rfc: MyString
+  pass_sat: MyString
