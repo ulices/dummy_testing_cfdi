@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  mount_uploader :certificate_url, SatDucumentUploader
+
   attr_accessor :encryption_key
 
   def save_certificate certificate_path

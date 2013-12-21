@@ -10,7 +10,7 @@ class ElectronicInvoicesController < ApplicationController
 
   def new
     @user = User.where(rfc: 'TUMG620310R95')
-    @user_credentials = UserCredentialService.new @user
+    @user_certificate = @user.certificate_url
     @electronic_invoice = ElectronicInvoice.new
   end
 
