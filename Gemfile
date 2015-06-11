@@ -14,7 +14,7 @@ gem 'carrierwave'
 gem "fog", "~> 1.3.1"
 
 #gem 'facturacion_electronica', git: 'git@github.com:crowdint/facturacion_electronica.git'
-gem 'facturacion_electronica', path: '../facturacion_electronica'
+gem 'facturacion_electronica'
 gem 'fm_timbrado_cfdi', git: 'git@github.com:crowdint/fm_timbrado_cfdi.git'
 
 group :developmen, :test do

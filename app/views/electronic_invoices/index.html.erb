@@ -1,1 +1,18 @@
 <h1>Electroinc Invoices</h1>
+<div>
+  <%= link_to 'New Invoice', new_electronic_invoice_path %>
+</div>
+<table>
+  <thead>
+    <th>Number</th>
+    <th>Request</th>
+  </thead>
+  <tbody>
+    <%- @electronic_invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.id %></td>
+        <td><%= invoice.request %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

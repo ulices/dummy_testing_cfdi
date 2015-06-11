@@ -9,14 +9,15 @@ class ElectronicInvoicesController < ApplicationController
   end
 
   def new
-    @user = User.where(rfc: 'TUMG620310R95')
-    @user_certificate = @user.certificate_url
+    @user = User.where(rfc: 'TUMG620310R95').first
+    #@user_certificate = @user.certificate_url
     @electronic_invoice = ElectronicInvoice.new
   end
 
   def create
-    @electronic_invoice = ElectronicInvoice.new(request: electronic_invoice_params.to_s)
-    @electronic_invoice.xml_response = request_to_stamp
+    @user = User.where(rfc: 'TUMG620310R95').first
+    @electronic_invoice = ElectronicInvoice.new(request: electronic_invoice_params(params).to_s)
+    @electronic_invoice.xml_response = request_to_stamp params
 
     respond_to do |format|
       if @electronic_invoice.save
@@ -31,7 +32,7 @@ class ElectronicInvoicesController < ApplicationController
 
   private
 
-  def electronic_invoice_params
+  def electronic_invoice_params params
     {
       user_keys: {
         id:                   Rails.application.config.fm_id,
@@ -44,21 +45,21 @@ class ElectronicInvoicesController < ApplicationController
       },
       pac_provider:           'FacturacionModerna',
       biller: {
-         certificate:         @user_credentials.get_certificate,
-         key:                 @user_credentials.get_key,
+         certificate:         File.open('./spec/fixtures/example_certificates/TUMG620310R95/TUMG620310R95_1210241209S.cer'), #@user_credentials.get_certificate,
+         key:                 File.open('spec/fixtures/example_certificates/TUMG620310R95/TUMG620310R95_1210241209S.key.pem'),#@user_credentials.get_key,
          password:            '12345678a'
       },
       bill: {
         factura: {
-          folio:              params[:folio],
-          serie:              params[:serie],
-          fecha:              params[:fecha],
-          formaDePago:        params[:forma_pago],
-          condicionesDePago:  params[:condiciones_pago],
-          metodoDePago:       params[:metodo_pago],
-          lugarExpedicion:    params[:lugar_expedicion],
-          NumCtaPago:         params[:numero_cuenta_pago],
-          moneda:             params[:moneda]
+          folio:              '101',
+          serie:              'A',
+          fecha:              Time.now,
+          formaDePago:        'Pago en una sola exhibicion',
+          condicionesDePago:  'Contado',
+          metodoDePago:       'Efectivo',
+          lugarExpedicion:    'San Pedro Garza Garcia, Nuevo Leon, Mexico',
+          NumCtaPago:         '',
+          moneda:             'MNX'
         },
         conceptos: [
           { cantidad:         3,
@@ -128,8 +129,10 @@ class ElectronicInvoicesController < ApplicationController
     @electronic_invoice = ElectronicInvoice.find params[:id]
   end
 
-  def request_to_stamp
-    cfdi_response = FacturacionElectronica.create_cfdi electronic_invoice_params
+  def request_to_stamp params
+    cfdi_response = FacturacionElectronica.create_cfdi electronic_invoice_params params
+    puts '='*100
+    puts cfdi_response
     cfdi_response[:xml]
   end
 
